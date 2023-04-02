@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
-    [SerializeField] GameObject tile;
+    [SerializeField] GameObject[] tile;
     [SerializeField] int gridHeight = 10;
     [SerializeField] int gridWidth = 10;
     [SerializeField] float tileSize = 1f;
@@ -21,7 +21,8 @@ public class GridGenerator : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                GameObject newTile = Instantiate(tile, transform);
+                var randomTile = tile[Random.Range(0, tile.Length)];
+                GameObject newTile = Instantiate(randomTile, transform);
 
                 // not like top down where would go one unit
                 // go half unit side, and quarter unit up
