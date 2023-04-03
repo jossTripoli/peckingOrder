@@ -15,4 +15,9 @@ public class Tile : MonoBehaviour
     {
         highlight.SetActive(false);
     }
+
+    private void OnMouseDown()
+    {
+        FindAnyObjectByType<GridGenerator>().GetTileAtPosition(this.transform.position);
+    }
 }

@@ -25,7 +25,7 @@ public class GridGenerator : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                var randomTile = tile[Random.Range(0, tile.Length)];
+                var randomTile = tile[Random.Range(0, tile.Length - 1)];
                 GameObject newTile = Instantiate(randomTile, transform);
 
                 // not like top down where would go one unit
@@ -35,7 +35,7 @@ public class GridGenerator : MonoBehaviour
                 float posX = (x * tileSize - y * tileSize) / 2f;
                 float posY = (x * tileSize + y * tileSize) / 4f;
 
-                newTile.transform.position = new Vector2(posX, posY);
+                newTile.transform.position = new Vector3(posX, posY, 1);
                 newTile.name = x + " , " + y;
 
                 tiles[new Vector2(x, y)] = newTile;
@@ -46,8 +46,14 @@ public class GridGenerator : MonoBehaviour
 
     public void GetTileAtPosition(Vector2 pos)
     {
+        /*foreach (var t in tiles)
+        {
+            Debug.Log("Key = " + t.Key + "Value = " + t.Value);
+        }*/
         // convert isometric world space into cartesian
         Vector2 dictionaryKey = new Vector2(2 * pos.y + pos.x, 2 * pos.y - pos.x);
         Debug.Log(tiles[dictionaryKey]);
+        // return tiles[dictionaryKey];
+        // tile to right: x+1   , to left: x-1
     }
 }

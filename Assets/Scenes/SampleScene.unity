@@ -472,6 +472,7 @@ GameObject:
   - component: {fileID: 792263393}
   - component: {fileID: 792263392}
   - component: {fileID: 792263394}
+  - component: {fileID: 792263395}
   m_Layer: 0
   m_Name: flower
   m_TagString: Untagged
@@ -580,6 +581,19 @@ PolygonCollider2D:
       - {x: 0.75531924, y: -0.12236958}
       - {x: 0.9925649, y: 0.0035351366}
       - {x: 0.5439031, y: 0.23634109}
+--- !u!114 &792263395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792263391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887a3c12028b61646bd6765e769e760a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 1199774982}
 --- !u!1 &826357517
 GameObject:
   m_ObjectHideFlags: 0
@@ -625,6 +639,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &997123557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1164537191614618177, guid: c54a7bf5b92e8cc4eb47961aece44493, type: 3}
+  m_PrefabInstance: {fileID: 1831900814}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1056322000
 GameObject:
   m_ObjectHideFlags: 0
@@ -5586,6 +5605,19 @@ PolygonCollider2D:
       - {x: 0.7498564, y: -0.12509316}
       - {x: 0.9896941, y: 0.0042321086}
       - {x: 0.54946643, y: 0.23598674}
+--- !u!114 &1844555917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844555914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 887a3c12028b61646bd6765e769e760a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 997123557}
 --- !u!1 &1864897373
 GameObject:
   m_ObjectHideFlags: 0
