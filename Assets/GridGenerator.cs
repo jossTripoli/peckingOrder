@@ -5,8 +5,8 @@ using UnityEngine;
 public class GridGenerator : MonoBehaviour
 {
     [SerializeField] GameObject[] tile;
-    [SerializeField] int gridHeight = 10;
-    [SerializeField] int gridWidth = 10;
+    [SerializeField] int gridHeight = 25;
+    [SerializeField] int gridWidth = 25;
     [SerializeField] float tileSize = 1f;
 
     private Dictionary<Vector2, GameObject> tiles;
@@ -25,7 +25,9 @@ public class GridGenerator : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                var randomTile = tile[Random.Range(0, tile.Length - 1)];
+                int randNum = Random.Range(0, tile.Length);
+                Debug.Log(randNum);
+                var randomTile = tile[randNum];
                 GameObject newTile = Instantiate(randomTile, transform);
 
                 // not like top down where would go one unit
@@ -33,17 +35,32 @@ public class GridGenerator : MonoBehaviour
                 // Source: https://www.youtube.com/watch?v=04oQ2jOUjkU
 
                 float posX = (x * tileSize - y * tileSize) / 2f;
-                float posY = (x * tileSize + y * tileSize) / 4f;
+                float posY = ((x * tileSize + y * tileSize) / 4f) + 1; 
+                // if water, make lower
+                if (randNum == 2)
+                {
+                    posY = (float)(posY - 0.25);
+                }
+                if (randNum == 3)
+                {
+                    posY = (float)(posY + 0.25);
+                }
+
+                //float randomHeight = Random.Range(0f, 1f);
+                //float posY = ((x * tileSize + y * tileSize) / 4f) + (randomHeight - 1);
+
 
                 newTile.transform.position = new Vector2(posX, posY);
                 newTile.name = x + " , " + y;
+
+                // fix ordering for 3d
                 newTile.GetComponent<SpriteRenderer>().sortingOrder = 0 - x - y;
 
                 tiles[new Vector2(x, y)] = newTile;
             }
         }
 
-        // fix ordering
+        
 
     }
 
