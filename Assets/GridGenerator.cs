@@ -25,7 +25,21 @@ public class GridGenerator : MonoBehaviour
         {
             for (int y = 0; y < gridHeight; y++)
             {
-                int randNum = Random.Range(0, tile.Length);
+                //int randNum = Random.Range(0, tile.Length);
+                int randNum = 0;
+
+                int probability = Random.Range(0, 100);
+                if(probability < 40)
+                {
+                    randNum = 0;
+                }  else if (probability > 40 && probability < 80)
+                {
+                    randNum = 1;
+                } else
+                {
+                    randNum = 2;
+                }
+
                 Debug.Log(randNum);
                 var randomTile = tile[randNum];
                 GameObject newTile = Instantiate(randomTile, transform);
@@ -55,6 +69,8 @@ public class GridGenerator : MonoBehaviour
 
                 // fix ordering for 3d
                 newTile.GetComponent<SpriteRenderer>().sortingOrder = 0 - x - y;
+
+           
 
                 tiles[new Vector2(x, y)] = newTile;
             }
