@@ -35,12 +35,15 @@ public class GridGenerator : MonoBehaviour
                 float posX = (x * tileSize - y * tileSize) / 2f;
                 float posY = (x * tileSize + y * tileSize) / 4f;
 
-                newTile.transform.position = new Vector3(posX, posY, 1);
+                newTile.transform.position = new Vector2(posX, posY);
                 newTile.name = x + " , " + y;
+                newTile.GetComponent<SpriteRenderer>().sortingOrder = 0 - x - y;
 
                 tiles[new Vector2(x, y)] = newTile;
             }
         }
+
+        // fix ordering
 
     }
 
