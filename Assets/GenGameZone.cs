@@ -6,28 +6,37 @@ using UnityEngine.Tilemaps;
 public class GenGameZone : MonoBehaviour
 {
 
-    // If you have more layers to handle then do a List<Tilemap>
+    // Once have more layers to handle then do a List<Tilemap>
     public Tilemap tilemap;
 
-    // If you have a lot of tiles, think about some list, dictionary or structure
+    // switch to dictionary once have a bunch of tile
     public TileBase tileLand;
     public TileBase tileWater;
+    public TileBase tileMountain;
+    public TileBase tileFlower;
+    public TileBase tileLavender;
+    public TileBase tileTree;
 
     public OverlayTile overlayTilePrefab;
     public GameObject overlayContainer;
-    
+
     // KEY
     // 0 - water
     // 1 - grass
+    // 2 - flower
+    // 3 - lavender 
+    // 4 - mountain
 
+
+  
     // Sample terrain to be generated
     List<List<int>> gameWorld = new List<List<int>>
     {
-        new List<int> { 1, 1, 1, 1, 1},
-        new List<int> { 1, 1, 1, 1, 1},
-        new List<int> { 1, 0, 1, 1, 1},
-        new List<int> { 1, 0, 1, 1, 1},
-        new List<int> { 1, 1, 1, 1, 1},
+        new List<int> { 0, 0, 0, 0, 0},
+        new List<int> { 0, 1, 1, 1, 0},
+        new List<int> { 0, 1, 3, 1, 0},
+        new List<int> { 0, 1, 1, 4, 0},
+        new List<int> { 0, 0, 0, 0, 0},
     };
 
     private static GenGameZone _instance;
@@ -47,6 +56,22 @@ public class GenGameZone : MonoBehaviour
 
     void Start()
     {
+        // randomly generate grid with water along edges
+        for (int i = 0; i < gameWorld.Count; i++)
+        {
+            for (int j = 0; j < gameWorld[i].Count; j++)
+            {
+                if(i == 0 || j == 0 || i == 4 || j == 4)
+                {
+                    gameWorld[i][j] = 0;
+                } else
+                {
+                    gameWorld[i][j] = Random.Range(1, 6); ;
+                }
+            }
+        }
+
+
         // generate it 
         for (int x = 0; x < gameWorld.Count; x++)
         {
@@ -56,10 +81,21 @@ public class GenGameZone : MonoBehaviour
                 if (gameWorld[x][y] == 0)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, -1), tileWater);
-                }
-                else
+                } else if(gameWorld[x][y] == 1)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileLand);
+                } else if (gameWorld[x][y] == 2)
+                {
+                    tilemap.SetTile(new Vector3Int(x, y, 0), tileFlower);
+                } else if (gameWorld[x][y] == 3)
+                {
+                    tilemap.SetTile(new Vector3Int(x, y, 0), tileLavender);
+                } else if (gameWorld[x][y] == 4)
+                {
+                    tilemap.SetTile(new Vector3Int(x, y, 0), tileMountain);
+                } else
+                {
+                    tilemap.SetTile(new Vector3Int(x, y, 0), tileTree);
                 }
             }
         }
