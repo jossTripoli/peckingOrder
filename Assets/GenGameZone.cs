@@ -12,11 +12,15 @@ public class GenGameZone : MonoBehaviour
     // If you have a lot of tiles, think about some list, dictionary or structure
     public TileBase tileLand;
     public TileBase tileWater;
+    
+    // KEY
+    // 0 - water
+    // 1 - grass
 
     // Sample terrain to be generated
     List<List<int>> gameWorld = new List<List<int>>
     {
-        new List<int> { 0, 0, 0, 0, 0},
+        new List<int> { 1, 0, 0, 0, 0},
         new List<int> { 0, 1, 1, 1, 0},
         new List<int> { 0, 1, 1, 1, 0},
         new List<int> { 0, 1, 1, 1, 0},
@@ -29,7 +33,15 @@ public class GenGameZone : MonoBehaviour
         {
             for (int y = 0; y < gameWorld[x].Count; y++)
             {
-                tilemap.SetTile(new Vector3Int(x, y, 0), (gameWorld[x][y] == 0 ? tileWater : tileLand));
+                // tilemap.SetTile(new Vector3Int(x, y, 0), (gameWorld[x][y] == 0 ? tileWater : tileLand));
+                if (gameWorld[x][y] == 0)
+                {
+                    tilemap.SetTile(new Vector3Int(x, y, -1), tileWater);
+                }
+                else
+                {
+                    tilemap.SetTile(new Vector3Int(x, y, 0), tileLand);
+                }
             }
         }
     }
