@@ -30,8 +30,11 @@ public class MouseController : MonoBehaviour
             // Set the color of the sprite to blue if the z value of the overlayTile's position is -1
             if (overlayTile.transform.position.z == 1)
             {
-                spriteRenderer.color = new Color(0f, 0.82f, 0.94f, 1f);
-                // spriteRenderer.color = Color.blue;
+                //spriteRenderer.color = new Color(0f, 0.82f, 0.94f, 1f);
+                //spriteRenderer.color = Color.blue;
+
+                // Change the sprite renderer color to the hex color FFA500 (orange)
+                spriteRenderer.color = new Color(1f, 0.65f, 0f, 1f);
             }
             else
             {
