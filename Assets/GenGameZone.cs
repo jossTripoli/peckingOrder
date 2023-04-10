@@ -32,11 +32,11 @@ public class GenGameZone : MonoBehaviour
     // Sample terrain to be generated
     List<List<int>> gameWorld = new List<List<int>>
     {
-        new List<int> { 0, 0, 0, 0, 0},
-        new List<int> { 0, 1, 1, 1, 0},
-        new List<int> { 0, 1, 3, 1, 0},
-        new List<int> { 0, 1, 1, 4, 0},
-        new List<int> { 0, 0, 0, 0, 0},
+        new List<int> { 0, 1, 2, 1, 1},
+        new List<int> { 1, 1, 1, 3, 1},
+        new List<int> { 1, 4, 0, 1, 1},
+        new List<int> { 1, 1, 1, 1, 5},
+        new List<int> { 1, 1, 1, 1, 1},
     };
 
     private static GenGameZone _instance;
@@ -57,7 +57,7 @@ public class GenGameZone : MonoBehaviour
     void Start()
     {
         // randomly generate grid with water along edges
-        for (int i = 0; i < gameWorld.Count; i++)
+        /*for (int i = 0; i < gameWorld.Count; i++)
         {
             for (int j = 0; j < gameWorld[i].Count; j++)
             {
@@ -69,7 +69,7 @@ public class GenGameZone : MonoBehaviour
                     gameWorld[i][j] = Random.Range(1, 6); ;
                 }
             }
-        }
+        }*/
 
 
         // generate it 
@@ -77,7 +77,7 @@ public class GenGameZone : MonoBehaviour
         {
             for (int y = 0; y < gameWorld[x].Count; y++)
             {
-                // tilemap.SetTile(new Vector3Int(x, y, 0), (gameWorld[x][y] == 0 ? tileWater : tileLand));
+                //tilemap.SetTile(new Vector3Int(x, y, 0), (gameWorld[x][y] == 0 ? tileWater : tileLand));
                 if (gameWorld[x][y] == 0)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, -1), tileWater);
@@ -100,26 +100,31 @@ public class GenGameZone : MonoBehaviour
             }
         }
 
+        Debug.Log("After generating ");
+
+
         // grid based movement
         BoundsInt bounds = tilemap.cellBounds;
 
-        // Debug.Log("Bounds min z: " + bounds.min.z);
-        // Debug.Log("Bounds max z: " + bounds.max.z);
+         Debug.Log("Bounds min z: " + bounds.min.z);
+         Debug.Log("Bounds max z: " + bounds.max.z);
 
-        //Debug.Log("Bounds min y: " + bounds.min.y);
-        // Debug.Log("Bounds max y: " + bounds.max.y);
+        Debug.Log("Bounds min y: " + bounds.min.y);
+         Debug.Log("Bounds max y: " + bounds.max.y);
 
-        // Debug.Log("Bounds min x: " + bounds.min.x);
-        // Debug.Log("Bounds max x: " + bounds.max.x);
+         Debug.Log("Bounds min x: " + bounds.min.x);
+        Debug.Log("Bounds max x: " + bounds.max.x);
 
 
         // looping through all of the tiles drawn on map 
-        for (int z = bounds.max.z; z > bounds.min.z; z--)
+        for (int z = bounds.max.z; z >= bounds.min.z; z--)
         {
-            for (int y = bounds.min.y; y < bounds.max.y; y++)
+            for (int y = bounds.min.y; y <= bounds.max.y; y++)
             {
-                for (int x = bounds.min.x; x < bounds.max.x; x++)
+                for (int x = bounds.min.x; x <= bounds.max.x; x++)
                 {
+                    Debug.Log("Location is: " + x + ", " + y + ", " + z);
+
                     // capture tile location
                     var tileLocation = new Vector3Int(x, y, z);
 
@@ -133,9 +138,12 @@ public class GenGameZone : MonoBehaviour
 
                         // position the overlay tile in the correct spot
                         // create new vector tree to put it 1 z higher so it always render in front of it
-                        overlayTile.transform.position = new Vector3(cellWorldPosition.x, cellWorldPosition.y, cellWorldPosition.z + 4);
+                        overlayTile.transform.position = new Vector3(cellWorldPosition.x, cellWorldPosition.y, cellWorldPosition.z + 2);
                         // make sure everything is on the same sorting order 
                         overlayTile.GetComponent<SpriteRenderer>().sortingOrder = tilemap.GetComponent<TilemapRenderer>().sortingOrder;
+
+                        Debug.Log("Instantiated");
+
                     }
 
                 }
