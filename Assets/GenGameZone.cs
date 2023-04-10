@@ -103,29 +103,14 @@ public class GenGameZone : MonoBehaviour
         // grid based movement
         BoundsInt bounds = tilemap.cellBounds;
 
+        // Debug.Log("Bounds min z: " + bounds.min.z);
+        // Debug.Log("Bounds max z: " + bounds.max.z);
 
-        Debug.Log("Start function executed.");
-        StartCoroutine(CallAfterStart());
-    }
+        //Debug.Log("Bounds min y: " + bounds.min.y);
+        // Debug.Log("Bounds max y: " + bounds.max.y);
 
-
-
-    IEnumerator CallAfterStart()
-    {
-        yield return new WaitForSeconds(.01f); // Wait for 1/10 second
-        Debug.Log("Function called after 1 second.");
-
-        // grid based movement
-        BoundsInt bounds = tilemap.cellBounds;
-
-       // Debug.Log("Bounds min z: " + bounds.min.z);
-       // Debug.Log("Bounds max z: " + bounds.max.z);
-
-       //Debug.Log("Bounds min y: " + bounds.min.y);
-       // Debug.Log("Bounds max y: " + bounds.max.y);
-
-       // Debug.Log("Bounds min x: " + bounds.min.x);
-       // Debug.Log("Bounds max x: " + bounds.max.x);
+        // Debug.Log("Bounds min x: " + bounds.min.x);
+        // Debug.Log("Bounds max x: " + bounds.max.x);
 
 
         // looping through all of the tiles drawn on map 
@@ -156,9 +141,8 @@ public class GenGameZone : MonoBehaviour
                 }
             }
 
+    }
 
-        }
-        // Call your function here
     }
 
 }
