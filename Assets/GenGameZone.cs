@@ -34,11 +34,11 @@ public class GenGameZone : MonoBehaviour
     // Sample terrain to be generated
     List<List<int>> gameWorld = new List<List<int>>
     {
-        new List<int> { 0, 1, 2, 1, 1},
-        new List<int> { 1, 1, 1, 3, 1},
-        new List<int> { 1, 4, 0, 1, 1},
-        new List<int> { 1, 1, 1, 1, 5},
-        new List<int> { 1, 1, 1, 1, 1},
+        new List<int> { 0, 0, 0, 4, 1},
+        new List<int> { 0, 0, 0, 3, 1},
+        new List<int> { 0, 0, 0, 1, 4},
+        new List<int> { 1, 4, 1, 1, 5},
+        new List<int> { 4, 1, 1, 1, 4},
     };
 
     private static GenGameZone _instance;
@@ -58,6 +58,7 @@ public class GenGameZone : MonoBehaviour
 
     void Start()
     {
+
         // randomly generate grid with water along edges
         /*for (int i = 0; i < gameWorld.Count; i++)
         {
@@ -94,7 +95,7 @@ public class GenGameZone : MonoBehaviour
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileLavender);
                 } else if (gameWorld[x][y] == 4)
                 {
-                    tilemap.SetTile(new Vector3Int(x, y, 0), tileMountain);
+                    tilemap.SetTile(new Vector3Int(x, y, 1), tileMountain);
                 } else
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileTree);
@@ -104,7 +105,8 @@ public class GenGameZone : MonoBehaviour
 
         Debug.Log("After generating ");
 
-
+        // Instantiate map
+        map = new Dictionary<Vector2Int, OverlayTile>();
         // grid based movement
         BoundsInt bounds = tilemap.cellBounds;
 
@@ -130,9 +132,9 @@ public class GenGameZone : MonoBehaviour
                     // capture tile location
                     var tileLocation = new Vector3Int(x, y, z);
 
-            
+                    var tileKey = new Vector2Int(x, y);
                     // if to make sure there is a tile (in case of holes)
-                    if (tilemap.HasTile(tileLocation))
+                    if (tilemap.HasTile(tileLocation) && !map.ContainsKey(tileKey))
                     {
                         var overlayTile = Instantiate(overlayTilePrefab, overlayContainer.transform);
 
@@ -145,7 +147,8 @@ public class GenGameZone : MonoBehaviour
                         // make sure everything is on the same sorting order 
                         overlayTile.GetComponent<SpriteRenderer>().sortingOrder = tilemap.GetComponent<TilemapRenderer>().sortingOrder;
 
-                        Debug.Log("Instantiated");
+                        map.Add(tileKey, overlayTile);
+                        // Debug.Log("Instantiated");
 
                     }
 

@@ -28,17 +28,25 @@ public class MouseController : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = overlayTile.GetComponent<SpriteRenderer>().sortingOrder;
 
             // Set the color of the sprite to blue if the z value of the overlayTile's position is -1
-            if (overlayTile.transform.position.z == 1)
+            if (overlayTile.transform.position.z == 1) // water
             {
                 //spriteRenderer.color = new Color(0f, 0.82f, 0.94f, 1f);
-                //spriteRenderer.color = Color.blue;
+                spriteRenderer.color = Color.blue;
 
                 // Change the sprite renderer color to the hex color FFA500 (orange)
-                spriteRenderer.color = new Color(1f, 0.65f, 0f, 1f);
+                //spriteRenderer.color = new Color(1f, 0.65f, 0f, 1f);
+            }
+            else if (overlayTile.transform.position.z == 2) // land
+            {
+                spriteRenderer.color = Color.yellow;
+            }
+            else if(overlayTile.transform.position.z == 3) // mountain
+            {
+                spriteRenderer.color = Color.red;
             }
             else
             {
-                spriteRenderer.color = Color.yellow;
+                spriteRenderer.color = Color.white;
             }
 
         }
