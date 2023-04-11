@@ -27,6 +27,8 @@ public class GenGameZone : MonoBehaviour
     // 3 - lavender 
     // 4 - mountain
 
+    // dictionary of tiles
+    public Dictionary<Vector2Int, OverlayTile> map;
 
   
     // Sample terrain to be generated
@@ -106,13 +108,13 @@ public class GenGameZone : MonoBehaviour
         // grid based movement
         BoundsInt bounds = tilemap.cellBounds;
 
-         Debug.Log("Bounds min z: " + bounds.min.z);
-         Debug.Log("Bounds max z: " + bounds.max.z);
+        Debug.Log("Bounds min z: " + bounds.min.z);
+        Debug.Log("Bounds max z: " + bounds.max.z);
 
         Debug.Log("Bounds min y: " + bounds.min.y);
-         Debug.Log("Bounds max y: " + bounds.max.y);
+        Debug.Log("Bounds max y: " + bounds.max.y);
 
-         Debug.Log("Bounds min x: " + bounds.min.x);
+        Debug.Log("Bounds min x: " + bounds.min.x);
         Debug.Log("Bounds max x: " + bounds.max.x);
 
 
@@ -128,6 +130,7 @@ public class GenGameZone : MonoBehaviour
                     // capture tile location
                     var tileLocation = new Vector3Int(x, y, z);
 
+            
                     // if to make sure there is a tile (in case of holes)
                     if (tilemap.HasTile(tileLocation))
                     {
