@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+ /* Controls:
+  *  Pan camera: wasd, arrows, or move mouse to edge of screen
+  *  Zoom camera: mouse wheel
+  *  Reset camera: right-click or middle mouse button click
+  */ 
 public class CameraController : MonoBehaviour
 {
     // Camera movement speed
