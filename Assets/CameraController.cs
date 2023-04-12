@@ -80,7 +80,7 @@ public class CameraController : MonoBehaviour
             transform.position = originalPosition;
             Camera.main.orthographicSize = originalZoom;
             currentZoom = originalZoom;
-            //CenterOnTilemap();
+            CenterOnTilemap();
         }
     }
 

@@ -7,6 +7,8 @@ public class GenGameZone : MonoBehaviour
 {
     public CameraController cameraController;
 
+    public int seed = 123456789;
+
     // Once have more layers to handle then do a List<Tilemap>
     public Tilemap tilemap;
 
@@ -27,6 +29,7 @@ public class GenGameZone : MonoBehaviour
     // 2 - flower
     // 3 - lavender 
     // 4 - mountain
+    // 5 - tree
 
     // dictionary of tiles
     public Dictionary<Vector2Int, OverlayTile> map;
@@ -42,8 +45,8 @@ public class GenGameZone : MonoBehaviour
         new List<int> { 4, 1, 1, 1, 4},
     };*/
 
-    public int gameLength = 1;
-    public int gameWidth = 12;
+    public int gameLength = 100;
+    public int gameWidth = 100;
 
     List<List<int>> gameWorld = new List<List<int>>();
 
@@ -80,27 +83,59 @@ public class GenGameZone : MonoBehaviour
             }
         }*/
 
+
         // randomly generate grid give specific height and width to follow
+        /*
         for (int i = 0; i < gameLength; i++)
         {
             List<int> row = new List<int>();
 
             for (int j = 0; j < gameWidth; j++)
             {
+                int randNum = 0;
 
-                    row.Add(0);
+                Random.InitState(seed);
+
+                int probability = Random.Range(0, 100);
+                if (probability < 20)
+                {
+                    randNum = 0;
+                }
+                else if (probability > 20 && probability < 60)
+                {
+                    randNum = 1;
+                }
+                else if (probability > 60 && probability < 85)
+                {
+                    randNum = 2;
+                }
+                else if (probability > 85 && probability < 92)
+                {
+                    randNum = 3;
+                }
+                else if (probability > 92 && probability < 96)
+                {
+                    randNum = 4;
+                }
+                else
+                {
+                    randNum = 5;
+                }
+
+                row.Add(randNum);
                 /*if(i == 0 || j == 0 || i == 4 || j == 4)
                 {
                     gameWorld[i][j] = 0;
                 } else
                 {
-                    gameWorld[i][j] = Random.Range(1, 6); ;
-                }*/
+                    gameWorld[i][j] = Random.Range(1, 6); 
+                }
             }
             gameWorld.Add(row);
 
-        }
+        }*/
 
+        gameWorld = GenerateRandomList(seed);
 
         // generate it 
         for (int x = 0; x < gameWorld.Count; x++)
@@ -187,5 +222,63 @@ public class GenGameZone : MonoBehaviour
         }
 
     }
+
+    public List<List<int>> GenerateRandomList(int seed)
+    {
+        Random.InitState(seed);
+
+        List<List<int>> randomList = new List<List<int>>();
+
+        for (int row = 0; row < gameLength; row++)
+        {
+            List<int> newRow = new List<int>();
+            for (int col = 0; col < gameWidth; col++)
+            {
+                int randNum = 0;
+
+                int probability = Random.Range(0, 100);
+                Debug.Log("Random probability: " + probability);
+
+                if (probability < 20)
+                {
+                    randNum = 0;
+                }
+                else if (probability > 20 && probability < 50)
+                {
+                    randNum = 1;
+                }
+                else if (probability > 50 && probability < 80)
+                {
+                    randNum = 2;
+                }
+                else if (probability > 80 && probability < 94)
+                {
+                    randNum = 3;
+                }
+                else if (probability > 94 && probability < 98)
+                {
+                    randNum = 4;
+                }
+                else if(probability > 98 && probability < 100)
+                {
+                    randNum = 5;
+                } 
+                else
+                {
+                    randNum = 0;
+
+                }
+
+                newRow.Add(randNum);
+
+            }
+            randomList.Add(newRow);
+        }
+
+        return randomList;
+    }
+
+
+
 
 }
