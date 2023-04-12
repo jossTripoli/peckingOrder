@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: blueWater
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: d3f7613f21090a944b2636a09b0a3e2b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.88235295}
   m_Transform:
     e00: 1
     e01: 0

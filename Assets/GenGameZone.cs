@@ -5,6 +5,7 @@ using UnityEngine.Tilemaps;
 
 public class GenGameZone : MonoBehaviour
 {
+    public CameraController cameraController;
 
     // Once have more layers to handle then do a List<Tilemap>
     public Tilemap tilemap;
@@ -30,16 +31,21 @@ public class GenGameZone : MonoBehaviour
     // dictionary of tiles
     public Dictionary<Vector2Int, OverlayTile> map;
 
-  
+
     // Sample terrain to be generated
-    List<List<int>> gameWorld = new List<List<int>>
+    /*List<List<int>> gameWorld = new List<List<int>>
     {
         new List<int> { 0, 0, 0, 4, 1},
         new List<int> { 0, 0, 0, 3, 1},
         new List<int> { 0, 0, 0, 1, 4},
         new List<int> { 1, 4, 1, 1, 5},
         new List<int> { 4, 1, 1, 1, 4},
-    };
+    };*/
+
+    public int gameLength = 1;
+    public int gameWidth = 12;
+
+    List<List<int>> gameWorld = new List<List<int>>();
 
     private static GenGameZone _instance;
     public static GenGameZone Instance { get { return _instance; } }
@@ -59,7 +65,7 @@ public class GenGameZone : MonoBehaviour
     void Start()
     {
 
-        // randomly generate grid with water along edges
+        // randomly generate grid with water along edges for premade grid
         /*for (int i = 0; i < gameWorld.Count; i++)
         {
             for (int j = 0; j < gameWorld[i].Count; j++)
@@ -73,6 +79,27 @@ public class GenGameZone : MonoBehaviour
                 }
             }
         }*/
+
+        // randomly generate grid give specific height and width to follow
+        for (int i = 0; i < gameLength; i++)
+        {
+            List<int> row = new List<int>();
+
+            for (int j = 0; j < gameWidth; j++)
+            {
+
+                    row.Add(0);
+                /*if(i == 0 || j == 0 || i == 4 || j == 4)
+                {
+                    gameWorld[i][j] = 0;
+                } else
+                {
+                    gameWorld[i][j] = Random.Range(1, 6); ;
+                }*/
+            }
+            gameWorld.Add(row);
+
+        }
 
 
         // generate it 
@@ -110,14 +137,14 @@ public class GenGameZone : MonoBehaviour
         // grid based movement
         BoundsInt bounds = tilemap.cellBounds;
 
-        Debug.Log("Bounds min z: " + bounds.min.z);
-        Debug.Log("Bounds max z: " + bounds.max.z);
+        //Debug.Log("Bounds min z: " + bounds.min.z);
+        //Debug.Log("Bounds max z: " + bounds.max.z);
 
-        Debug.Log("Bounds min y: " + bounds.min.y);
-        Debug.Log("Bounds max y: " + bounds.max.y);
+        //Debug.Log("Bounds min y: " + bounds.min.y);
+        //Debug.Log("Bounds max y: " + bounds.max.y);
 
-        Debug.Log("Bounds min x: " + bounds.min.x);
-        Debug.Log("Bounds max x: " + bounds.max.x);
+        //Debug.Log("Bounds min x: " + bounds.min.x);
+        //Debug.Log("Bounds max x: " + bounds.max.x);
 
 
         // looping through all of the tiles drawn on map 
@@ -127,7 +154,7 @@ public class GenGameZone : MonoBehaviour
             {
                 for (int x = bounds.min.x; x <= bounds.max.x; x++)
                 {
-                    Debug.Log("Location is: " + x + ", " + y + ", " + z);
+                    // Debug.Log("Location is: " + x + ", " + y + ", " + z);
 
                     // capture tile location
                     var tileLocation = new Vector3Int(x, y, z);
@@ -154,8 +181,10 @@ public class GenGameZone : MonoBehaviour
 
                 }
             }
+            cameraController.CenterOnTilemap();
 
-    }
+
+        }
 
     }
 
