@@ -81,7 +81,9 @@ public class GenGameZone : MonoBehaviour
 
     void Start()
     {
-        CreateTileset();
+
+
+    CreateTileset();
 
 
         // randomly generate grid with water along edges for premade grid
@@ -151,7 +153,7 @@ public class GenGameZone : MonoBehaviour
 
         }*/
 
-        GeneratePerlinList(seed, scale, octaves, persistence, lacunarity);
+        GeneratePerlinList(scale, octaves, persistence, lacunarity);
 
         // Print out
         for (int x = 0; x < gameWidth; x++)
@@ -172,11 +174,11 @@ public class GenGameZone : MonoBehaviour
                 {
                     tilemap.SetTile(new Vector3Int(x, y, -1), tileset[0]);
                 }
-                else if (gameWorld[x][y] <= 80)
+                else if (gameWorld[x][y] <= 75)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileset[1]);
                 }
-                else if (gameWorld[x][y] <= 100)
+                else
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 1), tileset[2]);
                 }
@@ -188,10 +190,7 @@ public class GenGameZone : MonoBehaviour
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 1), tileMountain);
                 }*/
-                else
-                {
-                    tilemap.SetTile(new Vector3Int(x, y, -1), tileWater);
-                }
+
             }
         }
 
@@ -262,6 +261,7 @@ public class GenGameZone : MonoBehaviour
 
         //tileset.Add(2, tileFlower);
         //tileset.Add(3, tileLavender);
+        //tileset.Add(2, tileFlower);
         //tileset.Add(5, tileTree);
     }
 
@@ -321,24 +321,15 @@ public class GenGameZone : MonoBehaviour
         return randomList;
     }
 
-    public void GeneratePerlinList(int seed, float scale, int octaves, float persistence, float lacunarity)
+    public void GeneratePerlinList(float scale, int octaves, float persistence, float lacunarity)
     {
-        // Youtube way
-        /*
-        for (int x = 0; x < gameWidth; x++)
-        {
-            List<int> row = new List<int>();
-            for (int y = 0; y < gameLength; y++)
-            {
-                int tile_id = GetIdUsingPerlin(x, y);
-                Debug.Log("TILE ID: " + tile_id);
-                row.Add(tile_id);
-            }
-            gameWorld.Add(row);
-        }
-        */
-        // old way
-        List<List<int>> world = new List<List<int>>();
+        int seed = Random.Range(0, 100000);
+
+
+        scale = UnityEngine.Random.Range(5f, 15f);
+        octaves = UnityEngine.Random.Range(3, 6);
+        persistence = UnityEngine.Random.Range(0.4f, 0.6f);
+        lacunarity = UnityEngine.Random.Range(1.8f, 2.2f);
 
 
         for (int x = 0; x < gameWidth; x++)
@@ -346,6 +337,9 @@ public class GenGameZone : MonoBehaviour
             List<int> row = new List<int>();
             for (int y = 0; y < gameLength; y++)
             {
+                /*float amplitude = Random.Range(0.5f, 1.0f);
+                float frequency = Random.Range(0.5f, 1.0f);
+                float noiseHeight = 0;*/
                 float amplitude = 1;
                 float frequency = 1;
                 float noiseHeight = 0;
@@ -363,8 +357,6 @@ public class GenGameZone : MonoBehaviour
             }
             gameWorld.Add(row);
         }
-
-        //return gameWorld;
     }
 
 
