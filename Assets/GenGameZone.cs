@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class GenGameZone : MonoBehaviour
 {
     public CameraController cameraController;
 
     public int seed;
+    public Text seedText;
+
 
     // Once have more layers to handle then do a List<Tilemap>
     public Tilemap tilemap;
@@ -82,6 +85,8 @@ public class GenGameZone : MonoBehaviour
     void Start()
     {
         seed = Random.Range(0, 1000000);
+        seedText.text = "Seed: " + seed.ToString();
+
         Debug.Log("THE SEED NUM IS: " + seed);
 
         CreateTileset();
