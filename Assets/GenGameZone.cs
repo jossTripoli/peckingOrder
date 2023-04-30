@@ -47,6 +47,10 @@ public class GenGameZone : MonoBehaviour
 
     public int gameLength = 100;
     public int gameWidth = 100;
+    public float scale = 10f;
+    public int octaves = 4;
+    public float persistence = 0.5f;
+    public float lacunarity = 2f;
 
     List<List<int>> gameWorld = new List<List<int>>();
 
@@ -135,7 +139,7 @@ public class GenGameZone : MonoBehaviour
 
         }*/
 
-        gameWorld = GenerateRandomList(seed);
+        gameWorld = GeneratePerlinList(seed, scale, octaves, persistence, lacunarity);
 
         // generate it 
         for (int x = 0; x < gameWorld.Count; x++)
@@ -143,24 +147,29 @@ public class GenGameZone : MonoBehaviour
             for (int y = 0; y < gameWorld[x].Count; y++)
             {
                 //tilemap.SetTile(new Vector3Int(x, y, 0), (gameWorld[x][y] == 0 ? tileWater : tileLand));
-                if (gameWorld[x][y] == 0)
-                {
-                    tilemap.SetTile(new Vector3Int(x, y, -1), tileWater);
-                } else if(gameWorld[x][y] == 1)
+                if (gameWorld[x][y] < 0.05)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileLand);
-                } else if (gameWorld[x][y] == 2)
+                }
+                else if (gameWorld[x][y] < 0.5)
+                {
+                    tilemap.SetTile(new Vector3Int(x, y, 0), tileLand);
+                }
+                else if (gameWorld[x][y] < 0.6)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileFlower);
-                } else if (gameWorld[x][y] == 3)
+                }
+                else if (gameWorld[x][y] < 0.7)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 0), tileLavender);
-                } else if (gameWorld[x][y] == 4)
+                }
+                else if (gameWorld[x][y] < 0.9)
                 {
                     tilemap.SetTile(new Vector3Int(x, y, 1), tileMountain);
-                } else
+                }
+                else
                 {
-                    tilemap.SetTile(new Vector3Int(x, y, 0), tileTree);
+                    tilemap.SetTile(new Vector3Int(x, y, -1), tileWater);
                 }
             }
         }
@@ -278,6 +287,34 @@ public class GenGameZone : MonoBehaviour
         return randomList;
     }
 
+    public List<List<int>> GeneratePerlinList(int seed, float scale, int octaves, float persistence, float lacunarity)
+    {
+        List<List<int>> world = new List<List<int>>();
+
+        for (int x = 0; x < gameWidth; x++)
+        {
+            List<int> row = new List<int>();
+            for (int y = 0; y < gameLength; y++)
+            {
+                float amplitude = 1;
+                float frequency = 1;
+                float noiseHeight = 0;
+                for (int i = 0; i < octaves; i++)
+                {
+                    float sampleX = (float)x / scale * frequency;
+                    float sampleY = (float)y / scale * frequency;
+                    float perlinValue = Mathf.PerlinNoise(sampleX + seed, sampleY + seed) * 2 - 1;
+                    noiseHeight += perlinValue * amplitude;
+                    amplitude *= persistence;
+                    frequency *= lacunarity;
+                }
+                row.Add((int)(noiseHeight * 100));
+            }
+            world.Add(row);
+        }
+
+        return world;
+    }
 
 
 
