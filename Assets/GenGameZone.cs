@@ -7,7 +7,7 @@ public class GenGameZone : MonoBehaviour
 {
     public CameraController cameraController;
 
-    public int seed = 123456789;
+    public int seed;
 
     // Once have more layers to handle then do a List<Tilemap>
     public Tilemap tilemap;
@@ -81,9 +81,10 @@ public class GenGameZone : MonoBehaviour
 
     void Start()
     {
+        seed = Random.Range(0, 1000000);
+        Debug.Log("THE SEED NUM IS: " + seed);
 
-
-    CreateTileset();
+        CreateTileset();
 
 
         // randomly generate grid with water along edges for premade grid
@@ -323,13 +324,13 @@ public class GenGameZone : MonoBehaviour
 
     public void GeneratePerlinList(float scale, int octaves, float persistence, float lacunarity)
     {
-        int seed = Random.Range(0, 100000);
+        Random.InitState(seed);
 
-
-        scale = UnityEngine.Random.Range(5f, 15f);
-        octaves = UnityEngine.Random.Range(3, 6);
-        persistence = UnityEngine.Random.Range(0.4f, 0.6f);
-        lacunarity = UnityEngine.Random.Range(1.8f, 2.2f);
+        
+        scale = Random.Range(5f, 15f);
+        octaves = Random.Range(3, 6);
+        persistence = Random.Range(0.4f, 0.6f);
+        lacunarity = Random.Range(1.8f, 2.2f);
 
 
         for (int x = 0; x < gameWidth; x++)
