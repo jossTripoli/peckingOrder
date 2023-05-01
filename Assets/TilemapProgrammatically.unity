@@ -758,17 +758,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraController: {fileID: 616114441}
   seed: 1234
+  seedText: {fileID: 2002198767}
   tilemap: {fileID: 970701056}
-  tileLand: {fileID: 11400000, guid: a0068c0cadf32784fb34cceb2476b5f4, type: 2}
   tileWater: {fileID: 11400000, guid: 1944952ad006d81498e969b2063250fa, type: 2}
-  tileMountain: {fileID: 11400000, guid: f22ef783c8040404388ff83224015cda, type: 2}
+  tileLand: {fileID: 11400000, guid: a0068c0cadf32784fb34cceb2476b5f4, type: 2}
   tileFlower: {fileID: 11400000, guid: 62bccc16ed270654f89f444bbd5d3147, type: 2}
   tileLavender: {fileID: 11400000, guid: c7eb4f53d1b08344cb24d2b3a6d0e671, type: 2}
+  tileMountain: {fileID: 11400000, guid: f22ef783c8040404388ff83224015cda, type: 2}
   tileTree: {fileID: 11400000, guid: 58bce4c3dd5f77e4d868feee09b0c7f7, type: 2}
   overlayTilePrefab: {fileID: 2029795877673236499, guid: 0feb121d6e4ca3e48ab61a9f320de81d, type: 3}
   overlayContainer: {fileID: 1036828809}
-  gameLength: 100
-  gameWidth: 100
+  gameLength: 50
+  gameWidth: 50
+  scale: 10
+  octaves: 4
+  persistence: 0.5
+  lacunarity: 2
 --- !u!4 &1443137449
 Transform:
   m_ObjectHideFlags: 0
