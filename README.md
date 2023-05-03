@@ -7,9 +7,9 @@ I started my journey in game development by choosing to recreate classic games, 
 ## [Flappy Bird Demo](https://www.lehigh.edu/~jct324/FlappyTiel_WebGL/)
 ## [PONG Demo](https://www.lehigh.edu/~jct324/Pong_WebGL/)
 
-I then delved deeper into game design and inspired by my recent favorite game called Polytopia, I researched 4X (Explore, Expand, Exploit, Exterminate) games. This led me to create a game design document for my own 4x game. Here is the game design document I created for my game [Pecking Order.]
+I then delved deeper into game design and inspired by my recent favorite game called Polytopia, I researched 4X (Explore, Expand, Exploit, Exterminate) games. This led me to create a game design document for my own 4x game. Here is the game design document I created for my game Pecking Order:
 
-## (https://docs.google.com/document/d/1oWyOQN9Z7Rh0h8vXWrZLWEyG6qvI7BuZeyP3Ppp0API/edit?usp=sharing)
+## [Pecking Order Game Design Document](https://docs.google.com/document/d/1oWyOQN9Z7Rh0h8vXWrZLWEyG6qvI7BuZeyP3Ppp0API/edit?usp=sharing)
 
 To learn how to create an isometric style game in Unity, I implemented a basic isometric grid via Unity Tilemap and manually placing all the tiles in place. I also learned about pathfinding by implementing A*. 
 
