@@ -19,7 +19,7 @@ After having to manually placing all the tiles in place for the isometric grid, 
 
 ## [Random Map](https://www.lehigh.edu/~jct324/randomMapWebGL/)
 
-I then tried using a bias random method to ensure more land than water, but it still was too chaotic. That's when I discovered Perlin noise which is an algorithm that uses a pseudo-random sequence of values to generate a coherent pattern that mimics natural terrain features like hills and valleys. This method allowed me to create more diverse and interesting maps with a good balance of land, water, and mountain making the game much more enjoyable and replayable.
+I then tried using a bias random method to ensure more land than water was generated, but it still was too chaotic. That's when I discovered Perlin noise which is an algorithm that uses a pseudo-random sequence of values to generate a coherent pattern that mimics natural terrain features like hills and valleys. This method allowed me to create more diverse and interesting maps with a good balance of land, water, and mountain making the game much more enjoyable and replayable.
 
 ## [Perlin Noise Map](https://www.lehigh.edu/~jct324/perlinWorld/)
 
