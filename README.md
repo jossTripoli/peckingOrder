@@ -5,6 +5,7 @@ This semester I embarked on an independent study exploring Unity game developmen
 I started my journey in game development by choosing to recreate classic games, such as Flappy Bird and PONG, as a way to learn the basics without being weighed down by having to be creative and make art and game design. I began by working on Flappy Tiel, a 2D game that helped me learn the Unity 2D game development flow including topics like C#, Visual Studio, sprites, animation, collisions, persisting high scores, the delta time approach, and creating game UI. Then through creating PONG I explored the concepts of multiplayer and creating enemy AI. As my knowledge and skills grew, I decided to challenge myself by making my own game.
 
 [Flappy Bird Demo](https://www.lehigh.edu/~jct324/FlappyTiel_WebGL/)
+
 [PONG Demo](https://www.lehigh.edu/~jct324/Pong_WebGL/)
 
 I then delved deeper into game design and inspired by my recent favorite game called Polytopia, I researched 4X (Explore, Expand, Exploit, Exterminate) games. This led me to create a game design document for my own 4x game. Here is the game design document I created for my game Pecking Order:
